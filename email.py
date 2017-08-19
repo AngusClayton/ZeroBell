@@ -4,18 +4,18 @@ from email.mime.multipart import MIMEMultipart
 from smtplib import SMTP
 import smtplib
 import sys
+#CHANGE ALL VALUES, COMMENTED "CHANGE THIS VALUE TO ..."
 
-
-recipients = ['clayton.angus@outlook.com']
+recipients = ['example@hellbaskets.us'] #change this to your recieving email
 #emaillist = [elem.strip().split(',') for elem in recipients]
 emaillist = recipients
 msg = MIMEMultipart()
 msg['Subject'] = str(sys.argv[1])
-msg['From'] = 'raspberybell@gmail.com'
-msg['Reply-to'] = 'raspberybell@gmail.com'
+msg['From'] = 'raspberybell@gmail.com' #CHANGE TO GMAIL
+msg['Reply-to'] = 'raspberybell@gmail.com' #CHANGE TO GMAIL
  
 msg.preamble = 'Multipart massage.\n'
- 
+# you can change the msg if you like:
 part = MIMEText("Hello Sir/Ma'am, There is some one at your door. A picture of this person has been atached.")
 msg.attach(part)
  
@@ -27,6 +27,6 @@ msg.attach(part)
 server = smtplib.SMTP("smtp.gmail.com:587")
 server.ehlo()
 server.starttls()
-server.login('raspberybell@gmail.com','raspberrypi1')
+server.login('emailgoeshere@gmail.com','PASSWORD') #CHANGE TO GMAIL, and GMAIL PASSWORD
  
 server.sendmail(msg['From'], emaillist , msg.as_string())
